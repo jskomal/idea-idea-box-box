@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
-function App() {
+const App = () => {
   useEffect(() => {
     const fetchOptions = {
       method: 'GET',
