@@ -3,26 +3,43 @@ import { Route } from 'react-router-dom'
 import './App.css'
 import NavBar from './components/NavBar/NavBar'
 import { ideaboxTypes } from './ideaboxTypes'
+import { fetchMovies, fetchPhotos, fetchColors, fetchAnimals } from './APIcalls'
 
 const App = () => {
   const [randIdeaboxType, setrandIdeaboxType] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [themes, setThemes] = useState([])
+  const [currentTheme, setCurrentTheme] = useState(null)
+  const [isThemeLocked, setIsThemeLocked] = useState(false)
+  const [isTypeLocked, setIsTypeLocked] = useState(false)
 
   useEffect(() => {
     getRandIdeaboxType(ideaboxTypes)
 
-    const fetchOptions = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com',
-        'X-RapidAPI-Key': process.env.REACT_APP_XKEY
-      }
-    }
-    console.log('hi')
+    Promise.all([fetchMovies(), fetchPhotos(), fetchColors(), fetchAnimals()])
+      .then((data) => {
+        return data.map((element) => {
+          setThemes((prev) => [...prev, element.hasTypes])
+        })
+      })
+      .then(() => setIsLoading(false))
   }, [])
 
+  useEffect(() => {
+    if (!isLoading) {
+      getRandTheme(themes)
+    }
+  }, [isLoading])
+
   const getRandIdeaboxType = (array) => {
-    let randomIndex = Math.floor(Math.random() * array.length)
+    const randomIndex = Math.floor(Math.random() * array.length)
     setrandIdeaboxType(array[randomIndex])
+  }
+
+  const getRandTheme = (array) => {
+    const randomIndex = Math.floor(Math.random() * array.length)
+    const randomThemeIndex = Math.floor(Math.random() * array[randomIndex].length)
+    setCurrentTheme(array[randomIndex][randomThemeIndex])
   }
 
   return (
@@ -33,10 +50,10 @@ const App = () => {
         <h2 className='sub-title'>what masterpiece will you make next?</h2>
         <section className='main-view'>
           <article className='ideabox-generator'>
-            <h3>{`A THEME-themed`}</h3>
+            {!isLoading && <h3>{`A ${currentTheme}-themed`}</h3>}
             <h3>{randIdeaboxType}</h3>
             <div className='button-pair'>
-              <button>Lock Theme</button>
+              <button onClick={() => console.log(themes)}>Lock Theme</button>
               <button>Lock Ideabox Type</button>
             </div>
             <div className='button-pair'>
