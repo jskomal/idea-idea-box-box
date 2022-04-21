@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Route } from 'react-router-dom'
 import './App.css'
 
 const App = () => {
@@ -13,7 +14,13 @@ const App = () => {
     console.log('hi')
   }, [])
 
-  return <div className='App'></div>
+  return (
+    <>
+      <Route>
+        <h1>IDEA IDEA BOX BOX</h1>
+      </Route>
+    </>
+  )
 }
 
 export default App
