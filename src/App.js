@@ -17,3 +17,5 @@ const App = () => {
 }
 
 export default App
+
+// hastypes: movies, car, photo, color, animal
