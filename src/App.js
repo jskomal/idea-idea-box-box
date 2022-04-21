@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Route } from 'react-router-dom'
 import './App.css'
+import Nav from './components/Nav/Nav'
 
 const App = () => {
   useEffect(() => {
@@ -17,6 +18,7 @@ const App = () => {
   return (
     <>
       <Route exact path='/'>
+        <Nav />
         <h1>IDEA IDEA BOX BOX</h1>
       </Route>
     </>
