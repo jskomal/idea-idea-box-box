@@ -3,12 +3,13 @@
 }
 
 .nav-icon {
+  position: relative;
   cursor: pointer;
   padding: 0.5rem;
   margin: 0.5rem;
-  z-index: 100;
   border: 1px solid var(--bg-color);
   border-radius: 0.3rem;
+  z-index: 1;
 }
 
 .active-icon {
@@ -23,7 +24,7 @@
 
 .side-bar {
   position: fixed;
-  z-index: -1;
+  z-index: 0;
   top: 0;
   width: 25vw;
   height: 100vh;
