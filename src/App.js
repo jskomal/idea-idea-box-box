@@ -16,7 +16,7 @@ const App = () => {
 
   return (
     <>
-      <Route>
+      <Route exact path='/'>
         <h1>IDEA IDEA BOX BOX</h1>
       </Route>
     </>
