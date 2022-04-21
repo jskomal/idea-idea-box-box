@@ -7,10 +7,10 @@ const ideaboxTypes = [
   'Fortune cookie generator',
   'Dad Joke generator',
   'Quote of the day',
-  'pokemon catalog',
+  'Pokemon catalog',
   'Baby Name list',
-  'compliment generator',
-  'thesarus app'
+  'Compliment generator',
+  'Thesarus app'
 ]
 
 export { ideaboxTypes }
