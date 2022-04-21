@@ -5,7 +5,14 @@ body {
 .main-title {
   text-align: center;
   font-family: 'Square Peg', cursive;
-  font-size: 5vw;
+  font-size: 4rem;
+}
+
+.sub-title {
+  text-align: center;
+  font-family: 'Square Peg', cursive;
+  font-size: 2rem;
+  margin-top: -1.5rem;
 }
 
 button {
@@ -17,4 +24,29 @@ button {
 
 button:hover {
   box-shadow: 0 0 1vh #333;
+}
+
+.main-view {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.ideabox-generator {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid var(--dark-accent);
+  border-radius: 1rem;
+  background-color: rgb(211, 211, 211);
+  width: 70vw;
+  height: 70vh;
+  padding: 2rem;
+}
+
+.button-pair {
+  width: 45vw;
+  display: flex;
+  justify-content: space-between;
 }
