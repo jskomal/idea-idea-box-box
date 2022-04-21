@@ -12,6 +12,7 @@ const App = () => {
   const [currentTheme, setCurrentTheme] = useState(null)
   const [isThemeLocked, setIsThemeLocked] = useState(false)
   const [isTypeLocked, setIsTypeLocked] = useState(false)
+  const [savedIdeaboxes, setSavedIdeaboxes] = useState([])
 
   useEffect(() => {
     getRandIdeaboxType(ideaboxTypes)
@@ -42,6 +43,15 @@ const App = () => {
     setCurrentTheme(array[randomIndex][randomThemeIndex])
   }
 
+  const clickRandomize = () => {
+    if (!isThemeLocked) {
+      getRandTheme(themes)
+    }
+    if (!isTypeLocked) {
+      getRandIdeaboxType(ideaboxTypes)
+    }
+  }
+
   return (
     <>
       <NavBar />
@@ -53,11 +63,15 @@ const App = () => {
             {!isLoading && <h3>{`A ${currentTheme}-themed`}</h3>}
             <h3>{randIdeaboxType}</h3>
             <div className='button-pair'>
-              <button onClick={() => console.log(themes)}>Lock Theme</button>
-              <button>Lock Ideabox Type</button>
+              <button onClick={() => setIsThemeLocked((prev) => !prev)}>{`${
+                isThemeLocked ? 'Unlock Theme' : 'Lock Theme'
+              }`}</button>
+              <button onClick={() => setIsTypeLocked((prev) => !prev)}>{`${
+                isTypeLocked ? 'Unlock Ideabox Type' : 'Lock Ideabox Type'
+              }`}</button>
             </div>
             <div className='button-pair'>
-              <button>Randomize</button>
+              <button onClick={clickRandomize}>Randomize</button>
               <button>Save Ideabox</button>
             </div>
           </article>
