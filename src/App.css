@@ -50,3 +50,8 @@ button:hover {
   display: flex;
   justify-content: space-between;
 }
+
+.ideas {
+  font-size: 3.5rem;
+  text-align: center;
+}
