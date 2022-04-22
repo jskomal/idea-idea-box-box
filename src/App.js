@@ -4,9 +4,10 @@ import './App.css'
 import NavBar from './components/NavBar/NavBar'
 import { ideaboxTypes } from './ideaboxTypes'
 import { fetchMovies, fetchPhotos, fetchColors, fetchAnimals } from './APIcalls'
+import Saved from './components/Saved/Saved'
 
 const App = () => {
-  const [randIdeaboxType, setrandIdeaboxType] = useState(null)
+  const [currentIdeaboxType, setCurrentIdeaboxType] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [themes, setThemes] = useState([])
   const [currentTheme, setCurrentTheme] = useState(null)
@@ -15,7 +16,7 @@ const App = () => {
   const [savedIdeaboxes, setSavedIdeaboxes] = useState([])
 
   useEffect(() => {
-    getRandIdeaboxType(ideaboxTypes)
+    getCurrentIdeaboxType(ideaboxTypes)
 
     Promise.all([fetchMovies(), fetchPhotos(), fetchColors(), fetchAnimals()])
       .then((data) => {
@@ -32,9 +33,9 @@ const App = () => {
     }
   }, [isLoading])
 
-  const getRandIdeaboxType = (array) => {
+  const getCurrentIdeaboxType = (array) => {
     const randomIndex = Math.floor(Math.random() * array.length)
-    setrandIdeaboxType(array[randomIndex])
+    setCurrentIdeaboxType(array[randomIndex])
   }
 
   const getRandTheme = (array) => {
@@ -48,8 +49,15 @@ const App = () => {
       getRandTheme(themes)
     }
     if (!isTypeLocked) {
-      getRandIdeaboxType(ideaboxTypes)
+      getCurrentIdeaboxType(ideaboxTypes)
     }
+  }
+
+  const clickSave = () => {
+    setSavedIdeaboxes((prev) => [
+      ...prev,
+      { theme: currentTheme, ideaboxType: currentIdeaboxType }
+    ])
   }
 
   return (
@@ -60,8 +68,10 @@ const App = () => {
         <h2 className='sub-title'>what masterpiece will you make next?</h2>
         <section className='main-view'>
           <article className='ideabox-generator'>
-            {!isLoading && <h3>{`A ${currentTheme}-themed`}</h3>}
-            <h3>{randIdeaboxType}</h3>
+            <div>
+              {!isLoading && <h3 className='ideas'>{`A ${currentTheme}-themed`}</h3>}
+              <h3 className='ideas'>{currentIdeaboxType}</h3>
+            </div>
             <div className='button-pair'>
               <button onClick={() => setIsThemeLocked((prev) => !prev)}>{`${
                 isThemeLocked ? 'Unlock Theme' : 'Lock Theme'
@@ -72,10 +82,13 @@ const App = () => {
             </div>
             <div className='button-pair'>
               <button onClick={clickRandomize}>Randomize</button>
-              <button>Save Ideabox</button>
+              <button onClick={clickSave}>Save Ideabox</button>
             </div>
           </article>
         </section>
+      </Route>
+      <Route exact path='/saved'>
+        <Saved savedIdeaboxes={savedIdeaboxes} />
       </Route>
     </>
   )
