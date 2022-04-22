@@ -40,9 +40,9 @@
   align-items: center;
   justify-content: space-between;
   margin-top: 5rem;
-  height: 11vh;
   transform: translateX(0);
   transition: all 200ms ease-in-out;
+  height: 15vh;
 }
 
 .active {
