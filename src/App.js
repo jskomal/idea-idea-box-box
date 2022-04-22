@@ -14,6 +14,7 @@ const App = () => {
   const [isThemeLocked, setIsThemeLocked] = useState(false)
   const [isTypeLocked, setIsTypeLocked] = useState(false)
   const [savedIdeaboxes, setSavedIdeaboxes] = useState([])
+  const [errorMsg, setErrorMsg] = useState('Try saving an ideabox!')
 
   useEffect(() => {
     getCurrentIdeaboxType(ideaboxTypes)
@@ -54,10 +55,18 @@ const App = () => {
   }
 
   const clickSave = () => {
-    setSavedIdeaboxes((prev) => [
-      ...prev,
-      { theme: currentTheme, ideaboxType: currentIdeaboxType }
-    ])
+    setSavedIdeaboxes((prev) => {
+      if (
+        !prev.some(
+          (idea) => idea.theme === currentTheme && idea.ideaboxType === currentIdeaboxType
+        )
+      ) {
+        setErrorMsg('Saved ideabox!')
+        return [...prev, { theme: currentTheme, ideaboxType: currentIdeaboxType }]
+      } else {
+        setErrorMsg("Can't save a duplicate ideabox, generate a new idea!")
+      }
+    })
   }
 
   return (
@@ -84,6 +93,7 @@ const App = () => {
               <button onClick={clickRandomize}>Randomize</button>
               <button onClick={clickSave}>Save Ideabox</button>
             </div>
+            <p>{errorMsg}</p>
           </article>
         </section>
       </Route>
