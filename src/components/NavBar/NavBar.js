@@ -3,9 +3,11 @@ import './NavBar.css'
 import navIcon from '../../assets/nav.svg'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const location = useLocation()
 
   return (
     <div className='nav-bar'>
@@ -17,6 +19,11 @@ const NavBar = () => {
       />
       <div className={`side-bar ${isOpen ? 'active' : ''}`}>
         <div className='nav-buttons'>
+          {location.pathname !== '/' && (
+            <NavLink to='/'>
+              <button>Home</button>
+            </NavLink>
+          )}
           <NavLink to='/saved'>
             <button>Saved Ideaboxes</button>
           </NavLink>
