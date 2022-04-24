@@ -5,6 +5,7 @@ import NavBar from './components/NavBar/NavBar'
 import { ideaboxTypes } from './ideaboxTypes'
 import { fetchMovies, fetchPhotos, fetchColors, fetchAnimals } from './APIcalls'
 import Saved from './components/Saved/Saved'
+import Create from './components/Create/Create'
 
 const App = () => {
   const [currentIdeaboxType, setCurrentIdeaboxType] = useState(null)
@@ -56,27 +57,24 @@ const App = () => {
 
   const clickSave = () => {
     setSavedIdeaboxes((prev) => {
-      if (prev) {
-        if (
-          !prev.some(
-            (idea) =>
-              idea.theme === currentTheme && idea.ideaboxType === currentIdeaboxType
-          )
-        ) {
-          setErrorMsg('Saved ideabox!')
-          return [
-            ...prev,
-            {
-              theme: currentTheme,
-              ideaboxType: currentIdeaboxType,
-              id: Date.now(),
-              isCompleted: false
-            }
-          ]
-        } else {
-          setErrorMsg("Can't save a duplicate ideabox, generate a new idea!")
-          return [...prev]
-        }
+      if (
+        !prev.some(
+          (idea) => idea.theme === currentTheme && idea.ideaboxType === currentIdeaboxType
+        )
+      ) {
+        setErrorMsg('Saved ideabox!')
+        return [
+          ...prev,
+          {
+            theme: currentTheme,
+            ideaboxType: currentIdeaboxType,
+            id: Date.now(),
+            isCompleted: false
+          }
+        ]
+      } else {
+        setErrorMsg("Can't save a duplicate ideabox, generate a new idea!")
+        return [...prev]
       }
     })
   }
@@ -131,6 +129,9 @@ const App = () => {
           clickDelete={clickDelete}
           clickComplete={clickComplete}
         />
+      </Route>
+      <Route exact path='/create'>
+        <Create setSavedIdeaboxes={setSavedIdeaboxes} />
       </Route>
     </>
   )
