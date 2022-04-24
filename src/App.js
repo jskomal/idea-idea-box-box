@@ -62,10 +62,20 @@ const App = () => {
         )
       ) {
         setErrorMsg('Saved ideabox!')
-        return [...prev, { theme: currentTheme, ideaboxType: currentIdeaboxType }]
+        return [
+          ...prev,
+          { theme: currentTheme, ideaboxType: currentIdeaboxType, id: Date.now() }
+        ]
       } else {
         setErrorMsg("Can't save a duplicate ideabox, generate a new idea!")
       }
+    })
+  }
+
+  const clickDelete = (e) => {
+    e.preventDefault()
+    setSavedIdeaboxes((prev) => {
+      return prev.filter((idea) => idea.id !== parseInt(e.target.id))
     })
   }
 
@@ -98,7 +108,7 @@ const App = () => {
         </section>
       </Route>
       <Route exact path='/saved'>
-        <Saved savedIdeaboxes={savedIdeaboxes} />
+        <Saved savedIdeaboxes={savedIdeaboxes} clickDelete={clickDelete} />
       </Route>
     </>
   )

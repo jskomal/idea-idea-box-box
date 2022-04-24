@@ -2,17 +2,19 @@ import React from 'react'
 import './Saved.css'
 import { Link } from 'react-router-dom'
 
-const Saved = ({ savedIdeaboxes }) => {
+const Saved = ({ savedIdeaboxes, clickDelete }) => {
   let cards
   if (savedIdeaboxes[0]) {
     cards = savedIdeaboxes.map((idea) => {
       return (
-        <article className='card' key={Date.now() + Math.random()}>
+        <article className='card' key={Date.now() + Math.random()} id={idea.id}>
           <h3 className='card-text'>A {idea.theme}-themed</h3>
           <h3 className='card-text'>{idea.ideaboxType}</h3>
 
           <button>mark as completed</button>
-          <button>delete ideabox</button>
+          <button id={idea.id} onClick={clickDelete}>
+            delete ideabox
+          </button>
         </article>
       )
     })
