@@ -56,23 +56,27 @@ const App = () => {
 
   const clickSave = () => {
     setSavedIdeaboxes((prev) => {
-      if (
-        !prev.some(
-          (idea) => idea.theme === currentTheme && idea.ideaboxType === currentIdeaboxType
-        )
-      ) {
-        setErrorMsg('Saved ideabox!')
-        return [
-          ...prev,
-          {
-            theme: currentTheme,
-            ideaboxType: currentIdeaboxType,
-            id: Date.now(),
-            isCompleted: false
-          }
-        ]
-      } else {
-        setErrorMsg("Can't save a duplicate ideabox, generate a new idea!")
+      if (prev) {
+        if (
+          !prev.some(
+            (idea) =>
+              idea.theme === currentTheme && idea.ideaboxType === currentIdeaboxType
+          )
+        ) {
+          setErrorMsg('Saved ideabox!')
+          return [
+            ...prev,
+            {
+              theme: currentTheme,
+              ideaboxType: currentIdeaboxType,
+              id: Date.now(),
+              isCompleted: false
+            }
+          ]
+        } else {
+          setErrorMsg("Can't save a duplicate ideabox, generate a new idea!")
+          return [...prev]
+        }
       }
     })
   }
@@ -87,8 +91,9 @@ const App = () => {
   const clickComplete = (e) => {
     e.preventDefault()
     setSavedIdeaboxes((prev) => {
-      prev.find((idea) => idea.id === parseInt(e.target.id)).isCompleted = true
-      return prev
+      const completed = prev.find((idea) => idea.id === parseInt(e.target.id))
+      completed.isCompleted = true
+      return [...prev]
     })
   }
 
