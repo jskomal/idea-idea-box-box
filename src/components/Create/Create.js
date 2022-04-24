@@ -5,7 +5,7 @@ import './Create.css'
 const Create = ({ setSavedIdeaboxes }) => {
   const [createdTheme, setCreatedTheme] = useState('')
   const [createdIdeaboxType, setCreatedIdeaboxType] = useState('')
-  const [statusMsg, setStatusMsg] = useState('Create an Idea')
+  const [statusMsg, setStatusMsg] = useState('Create an Ideabox!')
 
   const handleInput = (e) => {
     if (e.target.name === 'createdTheme') {
@@ -20,18 +20,41 @@ const Create = ({ setSavedIdeaboxes }) => {
     setCreatedIdeaboxType('')
   }
 
+  const validateInputs = () => {
+    if (createdTheme && createdIdeaboxType) {
+      return true
+    } else {
+      setStatusMsg('Please enter both a theme and type to submit')
+      return false
+    }
+  }
+
   const clickSaveCreated = () => {
-    setSavedIdeaboxes((prev) => {
-      if (prev) {
-        if (
-          !prev.some(
-            (idea) =>
-              idea.theme === createdTheme && idea.ideaboxType === createdIdeaboxType
-          )
-        ) {
-          setStatusMsg('Saved ideabox!')
+    if (validateInputs()) {
+      setSavedIdeaboxes((prev) => {
+        if (prev) {
+          if (
+            !prev.some(
+              (idea) =>
+                idea.theme === createdTheme && idea.ideaboxType === createdIdeaboxType
+            )
+          ) {
+            setStatusMsg('Saved ideabox!')
+            return [
+              ...prev,
+              {
+                theme: createdTheme,
+                ideaboxType: createdIdeaboxType,
+                id: Date.now(),
+                isCompleted: false
+              }
+            ]
+          } else {
+            setStatusMsg("Can't save a duplicate ideabox, generate a new idea!")
+            return [...prev]
+          }
+        } else {
           return [
-            ...prev,
             {
               theme: createdTheme,
               ideaboxType: createdIdeaboxType,
@@ -39,22 +62,10 @@ const Create = ({ setSavedIdeaboxes }) => {
               isCompleted: false
             }
           ]
-        } else {
-          setStatusMsg("Can't save a duplicate ideabox, generate a new idea!")
-          return [...prev]
         }
-      } else {
-        return [
-          {
-            theme: createdTheme,
-            ideaboxType: createdIdeaboxType,
-            id: Date.now(),
-            isCompleted: false
-          }
-        ]
-      }
-    })
-    clearInputs()
+      })
+      clearInputs()
+    }
   }
 
   return (
