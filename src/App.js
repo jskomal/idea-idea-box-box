@@ -24,8 +24,19 @@ const App = () => {
       .then((data) => {
         return data.map((element) => {
           setThemes((prev) => [...prev, element.hasTypes])
+          return element
         })
       })
+      .then(() =>
+        setSavedIdeaboxes(() => {
+          const retrieved = localStorage.getItem('savedIdeaboxes')
+          console.log(retrieved)
+          if (retrieved) {
+            const parsed = JSON.parse(retrieved)
+            setSavedIdeaboxes(parsed)
+          }
+        })
+      )
       .then(() => setIsLoading(false))
   }, [])
 
@@ -34,6 +45,12 @@ const App = () => {
       getRandTheme(themes)
     }
   }, [isLoading])
+
+  useEffect(() => {
+    if (savedIdeaboxes[0]) {
+      localStorage.setItem('savedIdeaboxes', JSON.stringify(savedIdeaboxes))
+    }
+  }, [savedIdeaboxes])
 
   const getCurrentIdeaboxType = (array) => {
     const randomIndex = Math.floor(Math.random() * array.length)
