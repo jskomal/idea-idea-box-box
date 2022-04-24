@@ -64,7 +64,12 @@ const App = () => {
         setErrorMsg('Saved ideabox!')
         return [
           ...prev,
-          { theme: currentTheme, ideaboxType: currentIdeaboxType, id: Date.now() }
+          {
+            theme: currentTheme,
+            ideaboxType: currentIdeaboxType,
+            id: Date.now(),
+            isCompleted: false
+          }
         ]
       } else {
         setErrorMsg("Can't save a duplicate ideabox, generate a new idea!")
@@ -76,6 +81,14 @@ const App = () => {
     e.preventDefault()
     setSavedIdeaboxes((prev) => {
       return prev.filter((idea) => idea.id !== parseInt(e.target.id))
+    })
+  }
+
+  const clickComplete = (e) => {
+    e.preventDefault()
+    setSavedIdeaboxes((prev) => {
+      prev.find((idea) => idea.id === parseInt(e.target.id)).isCompleted = true
+      return prev
     })
   }
 
@@ -108,7 +121,11 @@ const App = () => {
         </section>
       </Route>
       <Route exact path='/saved'>
-        <Saved savedIdeaboxes={savedIdeaboxes} clickDelete={clickDelete} />
+        <Saved
+          savedIdeaboxes={savedIdeaboxes}
+          clickDelete={clickDelete}
+          clickComplete={clickComplete}
+        />
       </Route>
     </>
   )
