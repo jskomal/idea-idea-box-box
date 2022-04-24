@@ -30,7 +30,6 @@ const App = () => {
       .then(() =>
         setSavedIdeaboxes(() => {
           const retrieved = localStorage.getItem('savedIdeaboxes')
-          console.log(retrieved)
           if (retrieved) {
             const parsed = JSON.parse(retrieved)
             setSavedIdeaboxes(parsed)
