@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Roll For Initiative
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##### Created by:
 
-## Available Scripts
+Jordan Skomal | [GitHub](https://github.com/jskomal)
 
-In the project directory, you can run:
+### Deploy Link
 
-### `npm start`
+Check out our deployed game [here](https://roll-for-initiative-turing.herokuapp.com/).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Table of Contents
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Overview](#overview)
+- [Technologies](#technologies)
+- [Site Examples](#screenshots)
+- [Install and Setup](#Install)
+- [Project Goals](#Goals)
 
-### `npm test`
+## Overview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Are you tired of building the same Ideaboxes time after time, what if you could be prompted to try a different style or theme, keeping everything fresh?
+This is the app for you, with just a click, you can see millions of possible ideaboxes, save them, mark them as complete, or even add your own!
 
-### `npm run build`
+## Technologies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Javascript
+- React
+- Router
+- Cypress
+- HTML
+- CSS
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Project Goals
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This is the showcase solo project for Mod 3 at Turing School of Software and Design built in React.
 
-### `npm run eject`
+## Site Examples
+![ideabox](https://user-images.githubusercontent.com/90876852/165006203-02b73d95-97ac-4974-893c-dfd7d4ce6079.gif)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Install and Setup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To run this app locally:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Run `git clone git@github.com:jskomal/idea-idea-box-box.git` in your command line
+2. Run `cd idea-idea-box-box` to navigate into the repository
+3. Run `npm install`
+4. Run `npm start`
 
-## Learn More
+Alternatively, visit our deployment link above!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Attributions
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thanks to my Project Manager, Robbie.
