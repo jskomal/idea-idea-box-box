@@ -43,7 +43,6 @@ To run this app locally:
 3. Run `npm install`
 4. Run `npm start`
 
-Alternatively, visit our deployment link above!
 
 ## Attributions
 
