@@ -18,6 +18,6 @@ describe('home page tests', () => {
     }).as('animal')
   })
   it('should display a welcome message', () => {
-    cy.visit('http://localhost:3000/')
+    cy.visit('http://localhost:3000/').get('.main-title').contains('Idea Ideabox Box')
   })
 })

@@ -136,16 +136,21 @@ const App = () => {
               <h3 className='ideas'>{currentIdeaboxType}</h3>
             </div>
             <div className='button-pair'>
-              <button onClick={() => setIsThemeLocked((prev) => !prev)}>{`${
-                isThemeLocked ? 'Unlock Theme' : 'Lock Theme'
-              }`}</button>
-              <button onClick={() => setIsTypeLocked((prev) => !prev)}>{`${
+              <button
+                id='lockTheme'
+                onClick={() => setIsThemeLocked((prev) => !prev)}
+              >{`${isThemeLocked ? 'Unlock Theme' : 'Lock Theme'}`}</button>
+              <button id='lockType' onClick={() => setIsTypeLocked((prev) => !prev)}>{`${
                 isTypeLocked ? 'Unlock Ideabox Type' : 'Lock Ideabox Type'
               }`}</button>
             </div>
             <div className='button-pair'>
-              <button onClick={clickRandomize}>Randomize</button>
-              <button onClick={clickSave}>Save Ideabox</button>
+              <button id='clickRandomize' onClick={clickRandomize}>
+                Randomize
+              </button>
+              <button id='clickSave' onClick={clickSave}>
+                Save Ideabox
+              </button>
             </div>
             <p>{errorMsg}</p>
           </article>
