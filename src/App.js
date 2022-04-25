@@ -46,7 +46,7 @@ const App = () => {
   }, [isLoading])
 
   useEffect(() => {
-    if (savedIdeaboxes[0]) {
+    if (savedIdeaboxes && savedIdeaboxes.length) {
       localStorage.setItem('savedIdeaboxes', JSON.stringify(savedIdeaboxes))
     }
   }, [savedIdeaboxes])
@@ -73,24 +73,36 @@ const App = () => {
 
   const clickSave = () => {
     setSavedIdeaboxes((prev) => {
-      if (
-        !prev.some(
-          (idea) => idea.theme === currentTheme && idea.ideaboxType === currentIdeaboxType
-        )
-      ) {
-        setErrorMsg('Saved ideabox!')
-        return [
-          ...prev,
+      if (prev) {
+        if (
+          !prev.some(
+            (idea) =>
+              idea.theme === currentTheme && idea.ideaboxType === currentIdeaboxType
+          )
+        ) {
+          setErrorMsg('Saved ideabox!')
+          return [
+            ...prev,
+            {
+              theme: currentTheme,
+              ideaboxType: currentIdeaboxType,
+              id: Date.now(),
+              isCompleted: false
+            }
+          ]
+        } else {
+          setErrorMsg("Can't save a duplicate ideabox, generate a new idea!")
+          return [...prev]
+        }
+      } else {
+        setSavedIdeaboxes([
           {
             theme: currentTheme,
             ideaboxType: currentIdeaboxType,
             id: Date.now(),
             isCompleted: false
           }
-        ]
-      } else {
-        setErrorMsg("Can't save a duplicate ideabox, generate a new idea!")
-        return [...prev]
+        ])
       }
     })
   }
