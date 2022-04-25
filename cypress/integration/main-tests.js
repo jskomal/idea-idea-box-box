@@ -20,4 +20,27 @@ describe('home page tests', () => {
   it('should display a welcome message', () => {
     cy.visit('http://localhost:3000/').get('.main-title').contains('Idea Ideabox Box')
   })
+
+  it('should have buttons that complete various tasks', () => {
+    cy.get('#lockTheme').contains('Lock Theme')
+    cy.get('#lockType').contains('Lock Ideabox Type')
+    cy.get('#clickRandomize').contains('Randomize')
+    cy.get('#clickSave').contains('Save Ideabox')
+  })
+
+  it('should be able to lock a theme', () => {
+    cy.get('#lockTheme').click().contains('Unlock Theme').click()
+  })
+
+  it('should be able to lock an Ideabox Type', () => {
+    cy.get('#lockType').click().contains('Unlock Ideabox Type').click()
+  })
+
+  it('should be able to randomize the given ideabox', () => {
+    cy.get('#clickRandomize').click()
+  })
+
+  it('should be able to save an Ideabox', () => {
+    cy.get('#clickSave').click()
+  })
 })
