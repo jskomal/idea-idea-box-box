@@ -15,10 +15,15 @@ const Saved = ({ savedIdeaboxes, clickDelete, clickComplete }) => {
             {idea.ideaboxType}
           </h3>
 
-          <button id={idea.id} onClick={clickComplete} disabled={idea.isCompleted}>
+          <button
+            id={idea.id}
+            data-complete
+            onClick={clickComplete}
+            disabled={idea.isCompleted}
+          >
             {`${idea.isCompleted ? 'complete!' : 'mark as completed'}`}
           </button>
-          <button id={idea.id} onClick={clickDelete}>
+          <button id={idea.id} data-delete onClick={clickDelete}>
             delete ideabox
           </button>
         </article>
