@@ -80,6 +80,7 @@ const Create = ({ setSavedIdeaboxes }) => {
             placeholder='Input a theme'
             value={createdTheme}
             onChange={handleInput}
+            data-theme-input
           />
           <input
             type='text'
@@ -87,8 +88,11 @@ const Create = ({ setSavedIdeaboxes }) => {
             placeholder='Input an Ideabox Type'
             value={createdIdeaboxType}
             onChange={handleInput}
+            data-type-input
           />
-          <button onClick={clickSaveCreated}>save ideabox</button>
+          <button data-save-ideabox onClick={clickSaveCreated}>
+            save ideabox
+          </button>
           <p>{statusMsg}</p>
         </section>
       </div>

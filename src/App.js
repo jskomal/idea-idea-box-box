@@ -46,7 +46,7 @@ const App = () => {
   }, [isLoading])
 
   useEffect(() => {
-    if (savedIdeaboxes[0]) {
+    if (savedIdeaboxes && savedIdeaboxes.length) {
       localStorage.setItem('savedIdeaboxes', JSON.stringify(savedIdeaboxes))
     }
   }, [savedIdeaboxes])
@@ -73,24 +73,36 @@ const App = () => {
 
   const clickSave = () => {
     setSavedIdeaboxes((prev) => {
-      if (
-        !prev.some(
-          (idea) => idea.theme === currentTheme && idea.ideaboxType === currentIdeaboxType
-        )
-      ) {
-        setErrorMsg('Saved ideabox!')
-        return [
-          ...prev,
+      if (prev) {
+        if (
+          !prev.some(
+            (idea) =>
+              idea.theme === currentTheme && idea.ideaboxType === currentIdeaboxType
+          )
+        ) {
+          setErrorMsg('Saved ideabox!')
+          return [
+            ...prev,
+            {
+              theme: currentTheme,
+              ideaboxType: currentIdeaboxType,
+              id: Date.now(),
+              isCompleted: false
+            }
+          ]
+        } else {
+          setErrorMsg("Can't save a duplicate ideabox, generate a new idea!")
+          return [...prev]
+        }
+      } else {
+        setSavedIdeaboxes([
           {
             theme: currentTheme,
             ideaboxType: currentIdeaboxType,
             id: Date.now(),
             isCompleted: false
           }
-        ]
-      } else {
-        setErrorMsg("Can't save a duplicate ideabox, generate a new idea!")
-        return [...prev]
+        ])
       }
     })
   }
@@ -124,16 +136,21 @@ const App = () => {
               <h3 className='ideas'>{currentIdeaboxType}</h3>
             </div>
             <div className='button-pair'>
-              <button onClick={() => setIsThemeLocked((prev) => !prev)}>{`${
-                isThemeLocked ? 'Unlock Theme' : 'Lock Theme'
-              }`}</button>
-              <button onClick={() => setIsTypeLocked((prev) => !prev)}>{`${
+              <button
+                id='lockTheme'
+                onClick={() => setIsThemeLocked((prev) => !prev)}
+              >{`${isThemeLocked ? 'Unlock Theme' : 'Lock Theme'}`}</button>
+              <button id='lockType' onClick={() => setIsTypeLocked((prev) => !prev)}>{`${
                 isTypeLocked ? 'Unlock Ideabox Type' : 'Lock Ideabox Type'
               }`}</button>
             </div>
             <div className='button-pair'>
-              <button onClick={clickRandomize}>Randomize</button>
-              <button onClick={clickSave}>Save Ideabox</button>
+              <button id='clickRandomize' onClick={clickRandomize}>
+                Randomize
+              </button>
+              <button id='clickSave' onClick={clickSave}>
+                Save Ideabox
+              </button>
             </div>
             <p>{errorMsg}</p>
           </article>
@@ -154,5 +171,3 @@ const App = () => {
 }
 
 export default App
-
-// hastypes: movies, car, photo, color, animal
