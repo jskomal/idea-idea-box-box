@@ -36,7 +36,7 @@ const Saved = ({ savedIdeaboxes, clickDelete, clickComplete }) => {
       <h1 className='main-title'>Saved Ideaboxes</h1>
       <h2 className='sub-title'>so many ideas, so little time</h2>
       <section className='saved-view'>
-        {savedIdeaboxes ? (
+        {savedIdeaboxes && savedIdeaboxes.length ? (
           cards
         ) : (
           <h1>

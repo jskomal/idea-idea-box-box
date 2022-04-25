@@ -14,7 +14,7 @@ const App = () => {
   const [currentTheme, setCurrentTheme] = useState(null)
   const [isThemeLocked, setIsThemeLocked] = useState(false)
   const [isTypeLocked, setIsTypeLocked] = useState(false)
-  const [savedIdeaboxes, setSavedIdeaboxes] = useState([])
+  const [savedIdeaboxes, setSavedIdeaboxes] = useState(null)
   const [errorMsg, setErrorMsg] = useState('Try saving an ideabox!')
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const App = () => {
           const retrieved = localStorage.getItem('savedIdeaboxes')
           if (retrieved) {
             const parsed = JSON.parse(retrieved)
-            setSavedIdeaboxes(parsed)
+            return parsed
           }
         })
       )
