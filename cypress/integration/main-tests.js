@@ -43,4 +43,8 @@ describe('home page tests', () => {
   it('should be able to save an Ideabox', () => {
     cy.get('#clickSave').click()
   })
+
+  it('should be able to open the sidebar', () => {
+    cy.get('.nav-icon').click()
+  })
 })
