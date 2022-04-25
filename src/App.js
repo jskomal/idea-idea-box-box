@@ -5,6 +5,7 @@ import NavBar from './components/NavBar/NavBar'
 import { ideaboxTypes } from './ideaboxTypes'
 import { fetchMovies, fetchPhotos, fetchColors, fetchAnimals } from './APIcalls'
 import Saved from './components/Saved/Saved'
+import Create from './components/Create/Create'
 
 const App = () => {
   const [currentIdeaboxType, setCurrentIdeaboxType] = useState(null)
@@ -23,8 +24,18 @@ const App = () => {
       .then((data) => {
         return data.map((element) => {
           setThemes((prev) => [...prev, element.hasTypes])
+          return element
         })
       })
+      .then(() =>
+        setSavedIdeaboxes(() => {
+          const retrieved = localStorage.getItem('savedIdeaboxes')
+          if (retrieved) {
+            const parsed = JSON.parse(retrieved)
+            setSavedIdeaboxes(parsed)
+          }
+        })
+      )
       .then(() => setIsLoading(false))
   }, [])
 
@@ -33,6 +44,12 @@ const App = () => {
       getRandTheme(themes)
     }
   }, [isLoading])
+
+  useEffect(() => {
+    if (savedIdeaboxes[0]) {
+      localStorage.setItem('savedIdeaboxes', JSON.stringify(savedIdeaboxes))
+    }
+  }, [savedIdeaboxes])
 
   const getCurrentIdeaboxType = (array) => {
     const randomIndex = Math.floor(Math.random() * array.length)
@@ -62,10 +79,35 @@ const App = () => {
         )
       ) {
         setErrorMsg('Saved ideabox!')
-        return [...prev, { theme: currentTheme, ideaboxType: currentIdeaboxType }]
+        return [
+          ...prev,
+          {
+            theme: currentTheme,
+            ideaboxType: currentIdeaboxType,
+            id: Date.now(),
+            isCompleted: false
+          }
+        ]
       } else {
         setErrorMsg("Can't save a duplicate ideabox, generate a new idea!")
+        return [...prev]
       }
+    })
+  }
+
+  const clickDelete = (e) => {
+    e.preventDefault()
+    setSavedIdeaboxes((prev) => {
+      return prev.filter((idea) => idea.id !== parseInt(e.target.id))
+    })
+  }
+
+  const clickComplete = (e) => {
+    e.preventDefault()
+    setSavedIdeaboxes((prev) => {
+      const completed = prev.find((idea) => idea.id === parseInt(e.target.id))
+      completed.isCompleted = true
+      return [...prev]
     })
   }
 
@@ -98,7 +140,14 @@ const App = () => {
         </section>
       </Route>
       <Route exact path='/saved'>
-        <Saved savedIdeaboxes={savedIdeaboxes} />
+        <Saved
+          savedIdeaboxes={savedIdeaboxes}
+          clickDelete={clickDelete}
+          clickComplete={clickComplete}
+        />
+      </Route>
+      <Route exact path='/create'>
+        <Create setSavedIdeaboxes={setSavedIdeaboxes} />
       </Route>
     </>
   )

@@ -16,9 +16,18 @@
   width: 30vw;
   height: 30vh;
   padding: 1rem;
+  margin-top: 1rem;
 }
 
 .card-buttons {
   display: flex;
   justify-content: space-between;
+}
+
+.card-text {
+  text-align: center;
+}
+
+.completed {
+  text-decoration: line-through;
 }
