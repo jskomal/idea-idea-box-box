@@ -4,10 +4,6 @@
 
 Jordan Skomal | [GitHub](https://github.com/jskomal)
 
-### Deploy Link
-
-Check out my deployed site [here](https://idea-ideabox-box.herokuapp.com/).
-
 ## Table of Contents
 
 - [Overview](#overview)
