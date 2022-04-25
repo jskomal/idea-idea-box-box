@@ -1,4 +1,4 @@
-# Roll For Initiative
+# Idea Ideabox Box
 
 ##### Created by:
 
@@ -6,7 +6,7 @@ Jordan Skomal | [GitHub](https://github.com/jskomal)
 
 ### Deploy Link
 
-Check out our deployed game [here](https://roll-for-initiative-turing.herokuapp.com/).
+Check out my deployed site [here](https://idea-ideabox-box.herokuapp.com/).
 
 ## Table of Contents
 
