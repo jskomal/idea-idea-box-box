@@ -21,14 +21,14 @@ const NavBar = () => {
         <div className='nav-buttons'>
           {location.pathname !== '/' && (
             <NavLink to='/'>
-              <button>Home</button>
+              <button id='buttonHome'>Home</button>
             </NavLink>
           )}
           <NavLink to='/saved'>
-            <button>Saved Ideaboxes</button>
+            <button id='buttonSaved'>Saved Ideaboxes</button>
           </NavLink>
           <NavLink to='/create'>
-            <button>Create Your Own</button>
+            <button id='buttonCreate'>Create Your Own</button>
           </NavLink>
         </div>
       </div>
