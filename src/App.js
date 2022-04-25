@@ -46,7 +46,7 @@ const App = () => {
   }, [isLoading])
 
   useEffect(() => {
-    if (savedIdeaboxes && savedIdeaboxes.length) {
+    if (savedIdeaboxes) {
       localStorage.setItem('savedIdeaboxes', JSON.stringify(savedIdeaboxes))
     }
   }, [savedIdeaboxes])
