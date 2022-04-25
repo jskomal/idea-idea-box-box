@@ -1,0 +1,51 @@
+.nav-bar {
+  position: absolute;
+}
+
+.nav-icon {
+  position: relative;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border: 1px solid var(--bg-color);
+  border-radius: 0.3rem;
+  z-index: 1;
+}
+
+.active-icon {
+  filter: invert(69%);
+}
+
+.nav-icon:hover {
+  filter: drop-shadow(0 0 1vh #333);
+  border: 1px solid var(--dark-accent);
+  border-radius: 0.3rem;
+}
+
+.side-bar {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  width: 25vw;
+  height: 100vh;
+  background-color: var(--secondary-bg-color);
+  border-right: 1px solid #333;
+  transform: translateX(-500px);
+  transition: all 200ms ease-in-out;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5rem;
+  transform: translateX(0);
+  transition: all 200ms ease-in-out;
+  height: 15vh;
+}
+
+.active {
+  transform: translateX(0);
+  transition: all 200ms ease-in-out;
+}
